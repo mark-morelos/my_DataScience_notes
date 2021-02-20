@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Spotify Song Suggestion</title>
+    <link rel="stylesheet" href="https://unpkg.com/picnic"/>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="brand"><span>Rock the beats!</span></a>
+      <!-- responsive-->
+      <input id="bmenub" type="checkbox" class="show">
+      <label for="bmenub" class="burger pseudo button">Menu</label>
+
+      <div class="menu">
+        <a href="/" class="button warning">Refresh Page</a>
+      </div>
+    </nav>
+
+    <article class="flex two" style="padding: 3em 1em;">
+      {% block content %}
+      <div>
+        <h1>Best Spotify Song Suggester</h1>
+        <h2>Our Spotify Song Suggester is an intelligent algorithm that enables users to create awesome playlists based on a song.</h2>
+        <br>
+        <h2> Get the playlist of your dreams based on a song.</h2>
+        
+        <form action="/songsuggester" method="get">
+
+          <input type="text" name="tweet_text" placeholder="Enter Your Favorite Song Here.">
+          
+          <input type="submit" value="Make Suggested Playlist">
+        </form>
+      </div>
+      <div>
+        <h1>Songs : json Library</h1>
+        <h3>Please Enter an Artist - for more artist info</h3>
+        <form action="/artistinfo">
+          <input type="text" name="input_artist" placeholder="Enter Artist Name">
+          <input type="submit">
+        </form>
+        <h3>Please Enter a Song - for more info on track</h3>
+        <form  action="/songinfo" method="POST">
+          <input type="text" name="user_input_song" placeholder="Enter Song Name">
+          <input type="submit">
+        </form>
+        <h3>Get More songs from your favorite Artist</h3>
+        <form action="/getsongs">
+          <input type="text" name="input_artist" placeholder="Get Up to 10 Tracks of Your Favorite Artist">
+          <input type="submit">
+        </form>
+      </div>
+      <div id="prediction">
+        <h2>Suggested Song List just for you</h2>
+        <br>
+        {% for result in results %}
+        <span class="stack"><li>{{ result }}</li></span>
+        {% endfor %}
+
+        <br>
+        <a href="/" class="button warning">Clear Suggested Playlist</a>
+        <p><div id="footer">
+          <hr>
+          &copy; Copyright 2020      Ask Marian Vinas |
+          <a href="Ask Marian Vinas">source</a>
+        </div></p>
+      </div>
+      {% endblock %}
+    </article>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/umbrellajs"/> -->
+
+  </body>
+</html>
